@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Codecool Shop</title>
+
+    <!-- Bootstrap components -->
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!--Latest compiled and minified Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- End of Bootstrap components -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+</head>
+
+<body>
+<div th:replace="header.html :: copy" th:with="categories=${categories}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong>Codecool Shop</strong>
+                        <h3 th:text="${userLname}+ ' ' + ${userFname}">  </h3>
+                        <br>
+                        <p th:text="'Shipping Address: '+  ${sAddress} "> </p>
+                        <p th:text="'Biling Address: ' + ${bAddress}">   </p>
+                        <p th:text="'Email: ' + ${email}">   </p>
+                        <p th:text="'Phone Number: ' + ${phone}">   </p>
+                        <br>
+                    </address>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                    <p>
+                        <em th:text="'Date: ' +${date}"></em>
+                    </p>
+                    <p>
+                        <em>Receipt #: 34522677W</em>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h1>Receipt</h1>
+                </div>
+                </span>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>No</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div class="col col-sm-12 col-md-6 col-lg-4" th:each="item : ${cart}">
+                    <tr >
+                        <td class="col-md-9" th:text="${item.key.getName()}"><em>Baked Rodopa Sheep Feta</em></h4></td>
+                        <td class="col-md-1" style="text-align: center" th:text="${item.value}"> 2 </td>
+                        <td class="col-md-1 text-center" th:text="${item.key.getDefaultPrice()}">$13</td>
+                        <td class="col-md-1 text-center" th:with="result =${item.key.getDefaultPrice() * item.value}"><span th:text="${#numbers.formatDecimal(result,1,2)}"></td>
+                    </tr>
+
+                    </div>
+                    <tr>
+                        <br>
+                        <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                        <td class="text-right text-danger"><h4 th:text="${#numbers.formatDecimal(total,1,2)}"><strong>$31.53</strong></h4></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+<!--                <button type="button" class="btn btn-success btn-lg btn-block">-->
+<!--                    Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>-->
+<!--                </button></td>-->
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
