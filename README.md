@@ -1,6 +1,8 @@
 # Codecool Online Shop
 
-Java SE: Web Project skeleton
+** Aspect:
+#+html: <p align="center"><img src="screenshots/webShop.jpg"/></p>
+
 
 # Install
 
